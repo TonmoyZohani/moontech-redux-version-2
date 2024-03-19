@@ -1,7 +1,7 @@
 import { TOGGLE_BRAND } from "../actionTypes/actionTypes";
 
-const initialState = {
-  filter: {
+export const initialState = {
+  filters: {
     brands: [],
     stock: false,
   },
@@ -13,10 +13,12 @@ export const filterReducer = (state = initialState, action) => {
     case TOGGLE_BRAND:
       return {
         ...state,
-        filter: {
-          ...state.filter,
-          brand: [...state.filter.brands, action.payload],
+        filters: {
+          ...state.filters,
+          brands: [...state.filters.brands, action.payload],
         },
       };
+      default:
+        return state
   }
 };
