@@ -24,8 +24,12 @@ const Home = () => {
 
   if (products.length) {
     content = products.map((product) => (
-      <ProductCard key={product.model} product={product} />
+      <ProductCard key={product.id} product={product} />
     ));
+  }
+
+  if(products.length && stock){
+    content = products.filter((product)=>product.status===true).map((product)=>(<ProductCard key={product.id} product={product}/>))
   }
 
   
