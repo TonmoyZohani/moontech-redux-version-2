@@ -34,10 +34,16 @@ const Home = () => {
         if (stock) {
           return product.status === true;
         } else {
-          return products;
+          return product;
         }
       })
-      .filter((product) => brands.includes(product.brand))
+      .filter((product) => {
+        if (brands.length) {
+          return brands.includes(product.brand);
+        } else {
+          return product;
+        }
+      })
       .map((product) => <ProductCard key={product.id} product={product} />);
   }
 
