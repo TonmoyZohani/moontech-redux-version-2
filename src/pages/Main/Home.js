@@ -28,11 +28,18 @@ const Home = () => {
     ));
   }
 
-  if(products.length && stock){
-    content = products.filter((product)=>product.status===true).map((product)=>(<ProductCard key={product.id} product={product}/>))
+  if (products.length && (stock || brands.length)) {
+    content = products
+      .filter((product) => {
+        if (stock) {
+          return product.status === true;
+        } else {
+          return products;
+        }
+      })
+      .filter((product) => brands.includes(product.brand))
+      .map((product) => <ProductCard key={product.id} product={product} />);
   }
-
-  
 
   return (
     <div className="max-w-7xl gap-14 mx-auto my-10">
